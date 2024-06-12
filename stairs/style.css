@@ -1,0 +1,94 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 97vh;
+    background: radial-gradient(#eac4ff,#9e57c5);
+    overflow:hidden;
+}
+.stairs{
+    position:relative;
+    width: 50vmin;
+    height:30vmin;
+    transform-style: preserve-3d;
+    transform: rotateX(-30deg) rotateY(250deg);
+    animation: animate 10s linear infinite;
+}
+@keyframes animate {
+    0%{transform: rotateX(-30deg) rotateY(0deg);}
+    100%{transform: rotateX(-30deg) rotateY(360deg);}
+}
+.stairs .base {
+    position:absolute;
+    top:0;
+    left:6vmin;
+    width: 36vmin;
+    height: 30vmin;
+    background: #000;
+    transform: rotateX(90deg) translateZ(-15vmin);
+    transform: rotateX(90deg) translateZ(-15vmin) scale(1.25);
+    filter: blur(2vmin);
+    opacity: 0.5;
+}
+.stairs .step{
+    position: absolute;
+    left: calc(6vmin * var(--j));
+    bottom: 0;
+    width: 6vmin;
+    heigth: calc(6vmin * var(--j));
+    background: red;
+    transform-style: preserve-3d;
+}
+.stairs .step::before{
+    content:"";
+    position: absolute;
+    top:0;
+    left:0;
+    width:6vmin;
+    height: 30vmin;
+    background: aqua;
+    transform: rotateX(90deg) translateZ(15vmin);
+}
+.stairs .step:hover::before{
+    filter: brightness(1.1);
+    cursor: pointer;
+}
+.stairs .step::after{
+    content:"";
+    position: absolute;
+    top:0;
+    left:0;
+    width:30vmin;
+    height: 6vmin;
+    background: greenyellow;
+    transform: rotateX(90deg) translateZ(-15vmin);
+}
+.stairs .step i {
+    position: absolute;
+    display: block;
+    width: 6vmin;
+    height: 100%;
+    background: #a54;
+    transform-style: preserve-3d;
+}
+.stairs .step i:nth-child(1){
+    transform: translateZ(15vmin);
+}
+.stairs .step i:nth-child(2){
+    transform: translateZ(-15vmin);
+}
+.stairs .step:last-child i:nth-child(2)::before{
+    content: "";
+    position:absolute;
+    top:0;
+    left:0;
+    width: 30vmin;
+    height: 100%;
+    background: blue;
+    transform: rotateY(90deg) translate3d(-15vmin,0,-90vmin);
+}
